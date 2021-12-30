@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
 
-    /// An `EnvironmentObject` of the apex predator view model.
+    /// An `EnvironmentObject` of the apex predator view model injected into the app environment accessible by any sub view which declares this property just as below
     @EnvironmentObject var apexPredatorsViewModel: ApexPredatorsViewModel
 
     var body: some View {
@@ -18,7 +18,7 @@ struct MainView: View {
                 NavigationLink(destination: DetailView(apexPredator: apexPredator)) {
                     ApexPredatorCell(apexPredator: apexPredator)
                 }
-                .navigationTitle(AppAppearence.mainViewNavigationTitle)
+                .navigationTitle(AppAppearenceConstants.mainViewNavigationTitle)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

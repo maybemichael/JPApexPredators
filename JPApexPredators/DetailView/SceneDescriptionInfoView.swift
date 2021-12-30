@@ -9,12 +9,16 @@ import SwiftUI
 
 struct SceneDescriptionInfoView: View {
 
+    /// The selected dinosaurs movie scene descriptions, describing the scenes the dinosaur appears in.
     let movieSceneDescriptions: [MovieSceneDescription]
+    /// The string url used to create the link to the website where most of this info came from.
     let sourceLink: String
+
+    /// Used to open a URL using the appropriate system service.
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppAppearence.standardMarginSpacing) {
+        VStack(alignment: .leading, spacing: AppAppearenceConstants.standardMarginSpacing) {
             ForEach(movieSceneDescriptions) { movieSceneDescription in
                 Text(movieSceneDescription.movie)
                     .font(.headline.bold())

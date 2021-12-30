@@ -15,11 +15,12 @@ struct DetailView: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 DetailTopImageView(apexPredator: apexPredator)
-                Spacer(minLength: AppAppearence.standardMarginSpacing)
+                Spacer(minLength: AppAppearenceConstants.standardMarginSpacing)
                 SceneDescriptionInfoView(movieSceneDescriptions: apexPredator.movieSceneDescriptions, sourceLink: apexPredator.link)
             }
-            .padding(.horizontal, AppAppearence.standardMarginSpacing)
+            .padding(.horizontal, AppAppearenceConstants.standardMarginSpacing)
         }
+        // Makes the navigation bar smaller, similar to navigationBar.prefersLargeTitles = false in UIKit
         .navigationBarTitleDisplayMode(.inline)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }

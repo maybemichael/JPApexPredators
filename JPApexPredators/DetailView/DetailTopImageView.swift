@@ -12,7 +12,7 @@ struct DetailTopImageView: View {
     let apexPredator: ApexPredator
     
     var body: some View {
-        VStack(alignment: .leading, spacing: AppAppearence.standardSiblingViewSpacing) {
+        VStack(alignment: .leading, spacing: AppAppearenceConstants.standardSiblingViewSpacing) {
             ZStack {
                 Image(apexPredator.type.backgroundImageName)
                     .resizable()
@@ -20,11 +20,11 @@ struct DetailTopImageView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            .frame(maxWidth: .infinity, maxHeight: AppAppearence.detailViewImageHeight, alignment: .center)
+            .frame(maxWidth: .infinity, maxHeight: AppAppearenceConstants.detailViewImageHeight, alignment: .center)
             Text(apexPredator.name)
                 .font(.title.bold())
                 .foregroundColor(.primary)
-            HStack(alignment: .center, spacing: AppAppearence.standardSiblingViewSpacing) {
+            HStack(alignment: .center, spacing: AppAppearenceConstants.standardSiblingViewSpacing) {
                 Text("Type:")
                     .font(.headline.bold())
                     .foregroundColor(.primary)

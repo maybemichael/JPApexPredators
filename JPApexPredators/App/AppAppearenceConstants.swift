@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppAppearence {
+struct AppAppearenceConstants {
     static let detailViewImageSize: CGFloat = UIScreen.main.bounds.width / 1.5
 
     static let detailViewImageWidth: CGFloat = UIScreen.main.bounds.width - 40

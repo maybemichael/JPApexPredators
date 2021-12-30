@@ -14,7 +14,6 @@
 		4C527932277AAEF9005ACED0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527931277AAEF9005ACED0 /* MainView.swift */; };
 		4C527934277AAF04005ACED0 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527933277AAF04005ACED0 /* DetailView.swift */; };
 		4C527937277AB090005ACED0 /* ApexPredator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527936277AB090005ACED0 /* ApexPredator.swift */; };
-		4C52793A277ACB54005ACED0 /* ApexPredatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527939277ACB54005ACED0 /* ApexPredatorsData.swift */; };
 		4C527940277AD206005ACED0 /* ApexPredatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C52793F277AD206005ACED0 /* ApexPredatorCell.swift */; };
 		4C527943277AE3B4005ACED0 /* FilterMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527942277AE3B4005ACED0 /* FilterMenuView.swift */; };
 		4C527946277AE5DF005ACED0 /* ApexPredatorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527945277AE5DF005ACED0 /* ApexPredatorsViewModel.swift */; };
@@ -22,7 +21,7 @@
 		4CE64083277D2B4E00283058 /* MovieSceneDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE64082277D2B4E00283058 /* MovieSceneDescription.swift */; };
 		4CE64089277D4EA100283058 /* ApexPredators.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CE64088277D4EA100283058 /* ApexPredators.json */; };
 		4CE6408B277D54FA00283058 /* SceneDescriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6408A277D54FA00283058 /* SceneDescriptionInfoView.swift */; };
-		4CE6408D277D5DB800283058 /* AppAppearence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6408C277D5DB800283058 /* AppAppearence.swift */; };
+		4CE6408D277D5DB800283058 /* AppAppearenceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6408C277D5DB800283058 /* AppAppearenceConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +33,6 @@
 		4C527931277AAEF9005ACED0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4C527933277AAF04005ACED0 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4C527936277AB090005ACED0 /* ApexPredator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredator.swift; sourceTree = "<group>"; };
-		4C527939277ACB54005ACED0 /* ApexPredatorsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredatorsData.swift; sourceTree = "<group>"; };
 		4C52793F277AD206005ACED0 /* ApexPredatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredatorCell.swift; sourceTree = "<group>"; };
 		4C527942277AE3B4005ACED0 /* FilterMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenuView.swift; sourceTree = "<group>"; };
 		4C527945277AE5DF005ACED0 /* ApexPredatorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredatorsViewModel.swift; sourceTree = "<group>"; };
@@ -42,7 +40,7 @@
 		4CE64082277D2B4E00283058 /* MovieSceneDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSceneDescription.swift; sourceTree = "<group>"; };
 		4CE64088277D4EA100283058 /* ApexPredators.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ApexPredators.json; sourceTree = "<group>"; };
 		4CE6408A277D54FA00283058 /* SceneDescriptionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDescriptionInfoView.swift; sourceTree = "<group>"; };
-		4CE6408C277D5DB800283058 /* AppAppearence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearence.swift; sourceTree = "<group>"; };
+		4CE6408C277D5DB800283058 /* AppAppearenceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearenceConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +124,6 @@
 		4C527938277ACB38005ACED0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4C527939277ACB54005ACED0 /* ApexPredatorsData.swift */,
 				4C527925277AAEC7005ACED0 /* Assets.xcassets */,
 				4CE64088277D4EA100283058 /* ApexPredators.json */,
 			);
@@ -154,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				4C527921277AAEC5005ACED0 /* JPApexPredatorsApp.swift */,
-				4CE6408C277D5DB800283058 /* AppAppearence.swift */,
+				4CE6408C277D5DB800283058 /* AppAppearenceConstants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C527940277AD206005ACED0 /* ApexPredatorCell.swift in Sources */,
-				4C52793A277ACB54005ACED0 /* ApexPredatorsData.swift in Sources */,
 				4C527934277AAF04005ACED0 /* DetailView.swift in Sources */,
 				4C527937277AB090005ACED0 /* ApexPredator.swift in Sources */,
 				4CE6408B277D54FA00283058 /* SceneDescriptionInfoView.swift in Sources */,
@@ -239,7 +235,7 @@
 				4C527932277AAEF9005ACED0 /* MainView.swift in Sources */,
 				4C527948277B658D005ACED0 /* SortMenuView.swift in Sources */,
 				4C527946277AE5DF005ACED0 /* ApexPredatorsViewModel.swift in Sources */,
-				4CE6408D277D5DB800283058 /* AppAppearence.swift in Sources */,
+				4CE6408D277D5DB800283058 /* AppAppearenceConstants.swift in Sources */,
 				4CE64083277D2B4E00283058 /* MovieSceneDescription.swift in Sources */,
 				4C116BB7277DA2FF005FEF5C /* DetailTopImageView.swift in Sources */,
 				4C527922277AAEC5005ACED0 /* JPApexPredatorsApp.swift in Sources */,

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FilterMenuView: View {
 
-    /// An `EnvironmentObject` of the apex predator view model.
+    /// An `EnvironmentObject` of the apex predator view model injected into the app environment accessible by any sub view which declares this property just as below
     @EnvironmentObject var apexPredatorsViewModel: ApexPredatorsViewModel
 
     /// Used to bind our filter menu views selection to our view models selected movie filter property
@@ -43,7 +43,7 @@ struct FilterMenuView: View {
         } label: {
             Image("FilterIcon")
                 .resizable()
-                .frame(width: AppAppearence.menuItemIconSize, height: AppAppearence.menuItemIconSize, alignment: .center)
+                .frame(width: AppAppearenceConstants.menuItemIconSize, height: AppAppearenceConstants.menuItemIconSize, alignment: .center)
                 .foregroundColor(.white)
         }
     }
@@ -60,5 +60,6 @@ struct FilterMenuView: View {
 struct FilterMenuView_Previews: PreviewProvider {
     static var previews: some View {
         FilterMenuView(filteredMovieSelection: .constant(.jurasicWorld), filteredTypeSelection: .constant(.land))
+            .environmentObject(ApexPredatorsViewModel())
     }
 }

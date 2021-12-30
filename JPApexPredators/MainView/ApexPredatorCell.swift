@@ -17,8 +17,8 @@ struct ApexPredatorCell: View {
                 Spacer()
                 Image(apexPredator.image)
                     .resizable()
-                    .frame(width: AppAppearence.cellImageSize, height: AppAppearence.cellImageSize, alignment: .center)
-                    .cornerRadius(AppAppearence.cellImageCornerRadius)
+                    .frame(width: AppAppearenceConstants.cellImageSize, height: AppAppearenceConstants.cellImageSize, alignment: .center)
+                    .cornerRadius(AppAppearenceConstants.cellImageCornerRadius)
                 Spacer()
             }
             VStack(alignment: .leading) {
