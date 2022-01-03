@@ -15,25 +15,31 @@ class ApexPredatorsViewModel: ObservableObject {
     @Published var displayedApexPredators: [ApexPredator] = []
 
     /// The `SortingOption` the user has currently selected which is used to sort displayed dinos in ascending, descending, or a random order.
-    var selectedSortingOption: SortingOption = .random {
+    @Published var selectedSortingOption: SortingOption = .random {
         didSet {
             sortAndUpdate(apexPredators: displayedApexPredators, sortedBy: selectedSortingOption)
         }
     }
 
     /// The `ApexPredatorType` the user has currently selected which is used to filter out all dinos that are not of this type.
-    var selectedTypeFilter: ApexPredatorType = .none {
+    @Published var selectedTypeFilter: ApexPredatorType? {
         didSet {
-            guard oldValue != selectedTypeFilter else { return }
-            filterDinosBySelectedFilters()
+            if let selectedTypeFilter = selectedTypeFilter, selectedTypeFilter == oldValue {
+                self.selectedTypeFilter = nil
+            } else {
+                filterDinosBySelectedFilters()
+            }
         }
     }
 
     /// The `JurassicParkMovie` the user has currently selected which is used to filter out all dinos that did not appear in the movie.
-    var selectedMovieFilter: JurasicParkMovie = .none {
+    @Published var selectedMovieFilter: JurasicParkMovie? {
         didSet {
-            guard oldValue != selectedMovieFilter else { return }
-            filterDinosBySelectedFilters()
+            if let selectedMovieFilter = selectedMovieFilter, selectedMovieFilter == oldValue {
+                self.selectedMovieFilter = nil
+            } else {
+                filterDinosBySelectedFilters()
+            }
         }
     }
 
@@ -64,8 +70,8 @@ class ApexPredatorsViewModel: ObservableObject {
     }
 
     /// Filters the passed in array of `ApexPredator's` to only ones that appeared in the passed in `JurassicParkMovie`, or returns the exact same passed in array if the movie is `.none`
-    private func filter(apexPredators dinos: [ApexPredator], byMovie movie: JurasicParkMovie) -> [ApexPredator] {
-        guard movie != .none else { return dinos }
+    private func filter(apexPredators dinos: [ApexPredator], byMovie movie: JurasicParkMovie?) -> [ApexPredator] {
+        guard let movie = movie else { return dinos }
 
         return dinos.filter {
             return $0.movies.contains(movie)
@@ -73,8 +79,8 @@ class ApexPredatorsViewModel: ObservableObject {
     }
 
     /// Filters the passed in array of `ApexPredator's` to only ones that match the passed in `ApexPredatorType`, or returns the exact same passed in array if the type is `.none`
-    private func filter(apexPredators dinos: [ApexPredator], byType type: ApexPredatorType) -> [ApexPredator] {
-        guard type != .none else { return dinos }
+    private func filter(apexPredators dinos: [ApexPredator], byType type: ApexPredatorType?) -> [ApexPredator] {
+        guard let type = type else { return dinos }
 
         return dinos.filter {
             return $0.type == type
@@ -83,23 +89,22 @@ class ApexPredatorsViewModel: ObservableObject {
 
     /// Used to filter all dinos by both the movie and type filters the user has currently selected, as well as sort the filtered results by the select sort option the user has select, then safely updates the displayedApexPredators array on the main thread.
     private func filterDinosBySelectedFilters() {
-        Task {
-            let hasNoMovieFilter: Bool = selectedMovieFilter == .none
-            let hasNoTypeFilter: Bool = selectedTypeFilter == .none
-            switch (hasNoMovieFilter, hasNoTypeFilter) {
-            case (true, true):
-                sortAndUpdate(apexPredators: allApexPredators, sortedBy: selectedSortingOption)
-            case (true, false):
-                let filteredDinos = filter(apexPredators: allApexPredators, byType: selectedTypeFilter)
-                sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
-            case (false, true):
-                let filteredDinos = filter(apexPredators: allApexPredators, byMovie: selectedMovieFilter)
-                sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
-            default:
-                var filteredDinos = filter(apexPredators: allApexPredators, byType: selectedTypeFilter)
-                filteredDinos = filter(apexPredators: filteredDinos, byMovie: selectedMovieFilter)
-                sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
-            }
+        // When referring to an enum type optional .none is the equivalent of nil so the below is the same as selectedMovieFilter == nil
+        let hasNoMovieFilter: Bool = selectedMovieFilter == .none
+        let hasNoTypeFilter: Bool = selectedTypeFilter == .none
+        switch (hasNoMovieFilter, hasNoTypeFilter) {
+        case (true, true):
+            sortAndUpdate(apexPredators: allApexPredators, sortedBy: selectedSortingOption)
+        case (true, false):
+            let filteredDinos = filter(apexPredators: allApexPredators, byType: selectedTypeFilter)
+            sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
+        case (false, true):
+            let filteredDinos = filter(apexPredators: allApexPredators, byMovie: selectedMovieFilter)
+            sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
+        default:
+            var filteredDinos = filter(apexPredators: allApexPredators, byType: selectedTypeFilter)
+            filteredDinos = filter(apexPredators: filteredDinos, byMovie: selectedMovieFilter)
+            sortAndUpdate(apexPredators: filteredDinos, sortedBy: selectedSortingOption)
         }
     }
 

@@ -23,19 +23,15 @@ struct SortMenuView: View {
                         .tag(option)
                 }
             } label: {
-                Label("Sort by Name", image: "SortLabelIcon")
+                Label(AppAppearenceConstants.sortMenuLabelTitle, image: AppAppearenceConstants.MenuIcon.sortLabelIcon.imageName)
             }
             .pickerStyle(MenuPickerStyle())
         } label: {
-            Image("SortIcon")
+            Image(AppAppearenceConstants.MenuIcon.sortMenuIcon.imageName)
                 .resizable()
                 .frame(width: AppAppearenceConstants.menuItemIconSize, height: AppAppearenceConstants.menuItemIconSize, alignment: .center)
                 .foregroundColor(.primary)
         }
-    }
-
-    private func updateSortingOption(sortingOption: SortingOption) {
-        apexPredatorsViewModel.selectedSortingOption = sortingOption
     }
 }
 

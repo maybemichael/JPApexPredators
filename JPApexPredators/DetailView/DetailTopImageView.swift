@@ -25,7 +25,7 @@ struct DetailTopImageView: View {
                 .font(.title.bold())
                 .foregroundColor(.primary)
             HStack(alignment: .center, spacing: AppAppearenceConstants.standardSiblingViewSpacing) {
-                Text("Type:")
+                Text(AppAppearenceConstants.detailViewTypeLabel)
                     .font(.headline.bold())
                     .foregroundColor(.primary)
                 Text(apexPredator.type.typeTitle)
@@ -33,7 +33,7 @@ struct DetailTopImageView: View {
                     .foregroundColor(.secondary)
             }
             HStack(alignment: .firstTextBaseline) {
-                Text("Appears in:")
+                Text(AppAppearenceConstants.detailViewAppearsInLabel)
                     .font(.headline.bold())
                     .foregroundColor(.primary)
                 VStack(alignment: .leading) {

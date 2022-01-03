@@ -13,10 +13,10 @@ struct FilterMenuView: View {
     @EnvironmentObject var apexPredatorsViewModel: ApexPredatorsViewModel
 
     /// Used to bind our filter menu views selection to our view models selected movie filter property
-    @Binding var filteredMovieSelection: JurasicParkMovie
+    @Binding var filteredMovieSelection: JurasicParkMovie?
 
     /// Used to bind our filter menu views selection to our view models selected type filter property
-    @Binding var filteredTypeSelection: ApexPredatorType
+    @Binding var filteredTypeSelection: ApexPredatorType?
 
     var body: some View {
         Menu {
@@ -24,36 +24,28 @@ struct FilterMenuView: View {
                 Picker(selection: $filteredMovieSelection) {
                     ForEach(JurasicParkMovie.allCases) { movie in
                         Label(movie.movieTitle, image: movie.iconImageName)
-                            .tag(movie)
+                            .tag(movie as JurasicParkMovie?)
                     }
                 } label: {
-                    Label("Filter by Movie", image: "MovieIconSmall")
+                    Label(AppAppearenceConstants.filterMenuMovieLabelTitle, image: AppAppearenceConstants.MenuIcon.movieFilterLabelIcon.imageName)
                 }
                 .pickerStyle(MenuPickerStyle())
                 Picker(selection: $filteredTypeSelection) {
                     ForEach(ApexPredatorType.allCases) { type in
                         Label(type.typeTitle, image: type.iconImageName)
-                            .tag(type)
+                            .tag(type as ApexPredatorType?)
                     }
                 } label: {
-                    Label("Filter by Type", image: "DinoTypeIconSmall")
+                    Label(AppAppearenceConstants.filterMenuTypeLabelTitle, image: AppAppearenceConstants.MenuIcon.typeFilterLabelIcon.imageName)
                 }
                 .pickerStyle(MenuPickerStyle())
             }
         } label: {
-            Image("FilterIcon")
+            Image(AppAppearenceConstants.MenuIcon.filterMenuIcon.imageName)
                 .resizable()
                 .frame(width: AppAppearenceConstants.menuItemIconSize, height: AppAppearenceConstants.menuItemIconSize, alignment: .center)
                 .foregroundColor(.white)
         }
-    }
-
-    private func filterDinos(byMovie movie: JurasicParkMovie) {
-        apexPredatorsViewModel.selectedMovieFilter = movie
-    }
-
-    private func filterDinos(byType type: ApexPredatorType) {
-        apexPredatorsViewModel.selectedTypeFilter = type
     }
 }
 

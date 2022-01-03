@@ -47,12 +47,11 @@ enum ApexPredatorType: Int, Codable, CaseIterable, Identifiable {
     case air
     case land
     case sea
-    case none
 
     /// Needed to conform to the `Identifiable` protocol
     var id: Int {
         switch self {
-        case .air, .land, .sea, .none:
+        case .air, .land, .sea:
             return rawValue
         }
     }
@@ -65,9 +64,6 @@ enum ApexPredatorType: Int, Codable, CaseIterable, Identifiable {
             return "Land"
         case .sea:
             return "Sea"
-        case .none:
-            // Used as title for filtering menu
-            return "No Filter"
         }
     }
 
@@ -79,9 +75,6 @@ enum ApexPredatorType: Int, Codable, CaseIterable, Identifiable {
             return "LandIcon"
         case .sea:
             return "SeaIcon"
-        case .none:
-            // Used to get icon from assets for filtering menu
-            return "NoFilterIcon"
         }
     }
 
@@ -93,8 +86,6 @@ enum ApexPredatorType: Int, Codable, CaseIterable, Identifiable {
             return "LandBackground"
         case .sea:
             return "SeaBackground"
-        case .none:
-            return ""
         }
     }
 }
@@ -105,12 +96,11 @@ enum JurasicParkMovie: Int, Codable, CaseIterable, Identifiable {
     case jurasicParkIII
     case jurasicWorld
     case fallenKingdom
-    case none
 
     /// Needed to conform to the `Identifiable` protocol
     var id: Int {
         switch self {
-        case .jurasicPark, .theLostWorld, .jurasicParkIII, .jurasicWorld, .fallenKingdom, .none:
+        case .jurasicPark, .theLostWorld, .jurasicParkIII, .jurasicWorld, .fallenKingdom:
             return rawValue
         }
     }
@@ -127,9 +117,6 @@ enum JurasicParkMovie: Int, Codable, CaseIterable, Identifiable {
             return "Jurassic World"
         case .fallenKingdom:
             return "Jurassic World: Fallen Kingdom"
-        case .none:
-            // Used as title for filtering menu
-            return "No Filter"
         }
     }
 
@@ -137,9 +124,6 @@ enum JurasicParkMovie: Int, Codable, CaseIterable, Identifiable {
         switch self {
         case .jurasicPark, .theLostWorld, .jurasicParkIII, .jurasicWorld, .fallenKingdom:
             return "FilmReelIcon"
-        case .none:
-            // Used to get icon from assets for filtering menu
-            return "NoFilterIcon"
         }
     }
 }

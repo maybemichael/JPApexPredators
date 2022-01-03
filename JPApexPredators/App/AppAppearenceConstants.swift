@@ -27,4 +27,37 @@ struct AppAppearenceConstants {
     static let mainViewNavigationTitle: String = "Apex Predators"
 
     static let cellImageCornerRadius: CGFloat = 7
+
+    static let filterMenuMovieLabelTitle: String = "Filter by Movie"
+
+    static let filterMenuTypeLabelTitle: String = "Filter by Type"
+
+    static let sortMenuLabelTitle: String = "Sort by Name"
+
+    static let detailViewTypeLabel: String = "Type:"
+
+    static let detailViewAppearsInLabel: String = "Appears in:"
+
+    enum MenuIcon: Int {
+        case movieFilterLabelIcon
+        case typeFilterLabelIcon
+        case filterMenuIcon
+        case sortLabelIcon
+        case sortMenuIcon
+
+        var imageName: String {
+            switch self {
+            case .movieFilterLabelIcon:
+                return "MovieIconSmall"
+            case .typeFilterLabelIcon:
+                return "DinoTypeIconSmall"
+            case .filterMenuIcon:
+                return "FilterIcon"
+            case .sortLabelIcon:
+                return "SortLabelIcon"
+            case .sortMenuIcon:
+                return "SortIcon"
+            }
+        }
+    }
 }
