@@ -24,52 +24,42 @@ class ApexPredatorsViewModel: ObservableObject {
     /// The `ApexPredatorType` the user has currently selected which is used to filter out all dinos that are not of this type.
     var selectedTypeFilter: ApexPredatorType = .none {
         didSet {
-            Task {
-                guard oldValue != selectedTypeFilter else { return }
-                filterDinosBySelectedFilters()
-            }
+            guard oldValue != selectedTypeFilter else { return }
+            filterDinosBySelectedFilters()
         }
     }
 
     /// The `JurassicParkMovie` the user has currently selected which is used to filter out all dinos that did not appear in the movie.
     var selectedMovieFilter: JurasicParkMovie = .none {
         didSet {
-            Task {
-                guard oldValue != selectedMovieFilter else { return }
-                filterDinosBySelectedFilters()
-            }
+            guard oldValue != selectedMovieFilter else { return }
+            filterDinosBySelectedFilters()
         }
     }
 
     /// An array containing all of the `ApexPredator` objects used to filter or reset the displayedApexPredators which are used in our views.
     private var allApexPredators: [ApexPredator] = [] {
         didSet {
-            Task {
-                await update(apexPredators: allApexPredators)
-            }
+            update(apexPredators: allApexPredators)
         }
     }
 
     init() {
-        Task {
-            await decodeApexPredatorData()
-        }
+        decodeApexPredatorData()
     }
 
     /// Sorts the passed in array of `ApexPredator's`by their name in a specific order based on the passed in `SortingOption`. The potential sorting options are alphabetically ascending/descending, or a randomly shuffled order.
     private func sortAndUpdate(apexPredators dinos: [ApexPredator], sortedBy sortingOption: SortingOption) {
-        Task {
-            switch sortingOption {
-            case .alphabeticallyAscending:
-                let sortedDinos = dinos.sorted(by: { $0.name < $1.name })
-                await update(apexPredators: sortedDinos)
-            case .alphabeticallyDescending:
-                let sortedDinos = dinos.sorted(by: { $0.name > $1.name })
-                await update(apexPredators: sortedDinos)
-            case .random:
-                let randomizedDinos = dinos.shuffled()
-                await update(apexPredators: randomizedDinos)
-            }
+        switch sortingOption {
+        case .alphabeticallyAscending:
+            let sortedDinos = dinos.sorted(by: { $0.name < $1.name })
+            update(apexPredators: sortedDinos)
+        case .alphabeticallyDescending:
+            let sortedDinos = dinos.sorted(by: { $0.name > $1.name })
+            update(apexPredators: sortedDinos)
+        case .random:
+            let randomizedDinos = dinos.shuffled()
+            update(apexPredators: randomizedDinos)
         }
     }
 
@@ -114,15 +104,15 @@ class ApexPredatorsViewModel: ObservableObject {
     }
 
     /// Safely updates the displayed apex predators on the main thread, which we use to display in our views.
-    @MainActor
     private func update(apexPredators predators: [ApexPredator]) {
         guard predators != displayedApexPredators else { return }
-        withAnimation(.easeOut) { self.displayedApexPredators = predators }
+        DispatchQueue.main.async {
+            withAnimation(.easeOut) { self.displayedApexPredators = predators }
+        }
     }
 
     /// Used to decode the `ApexPredator` model objects from the JSON file included in the app bundle and sets the arrays, which triggers the UI to update safely on the main thread.
-    @MainActor
-    func decodeApexPredatorData() {
+    private func decodeApexPredatorData() {
         guard
             let url = Bundle.main.url(forResource: "ApexPredators", withExtension: "json"),
             let data = try? Data(contentsOf: url)
@@ -130,7 +120,9 @@ class ApexPredatorsViewModel: ObservableObject {
 
         do {
             allApexPredators = try JSONDecoder().decode([ApexPredator].self, from: data)
-            update(apexPredators: allApexPredators)
+            DispatchQueue.main.async {
+                self.update(apexPredators: self.allApexPredators)
+            }
         } catch {
             print("Error decoding bundle file: \(error)")
         }
